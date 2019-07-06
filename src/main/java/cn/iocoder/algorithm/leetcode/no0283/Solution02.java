@@ -15,7 +15,7 @@ public class Solution02 {
 
     public void moveZeroes(int[] nums) {
         int length = nums.length;
-        int lastNotZeroIndex = 0; // 指向第一个非零元素的位置
+        int lastNotZeroIndex = 0; // 不断向下指向。当碰到 0 后，停留，等待 i 跳到非 0 元素，进行交换。
         for (int i = 0; i < length; i++) {
             // 如果为 0 ，则直接跳过
             if (nums[i] == 0) {
