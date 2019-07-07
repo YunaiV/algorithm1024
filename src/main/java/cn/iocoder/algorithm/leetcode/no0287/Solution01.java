@@ -7,7 +7,7 @@ package cn.iocoder.algorithm.leetcode.no0287;
  *
  * 时间复杂度是 O(N^2)
  */
-public class Solution {
+public class Solution01 {
 
     public int findDuplicate(int[] nums) {
         for (int i = 0; i < nums.length; i++) {
@@ -23,7 +23,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        Solution01 solution = new Solution01();
         System.out.println(solution.findDuplicate(new int[]{1 ,3, 4, 2, 2}));
         System.out.println(solution.findDuplicate(new int[]{3 ,1, 3, 4, 2}));
     }
