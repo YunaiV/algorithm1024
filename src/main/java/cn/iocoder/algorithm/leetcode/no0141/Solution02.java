@@ -5,6 +5,8 @@ import java.util.Set;
 
 /**
  * 哈希表
+ *
+ * 可以认为是 {@link Solution} 的优化方法
  */
 public class Solution02 {
 
