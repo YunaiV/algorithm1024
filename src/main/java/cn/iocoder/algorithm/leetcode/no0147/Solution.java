@@ -1,9 +1,13 @@
 package cn.iocoder.algorithm.leetcode.no0147;
 
+import cn.iocoder.algorithm.leetcode.common.ListNode;
+
 /**
  * https://leetcode-cn.com/problems/insertion-sort-list/
  *
- * 插入排序
+ * TODO 芋艿 参考 https://www.cnblogs.com/zqiguoshang/p/5897991.html 博客实现，看的有点懵逼，不是非常理解。
+ *
+ * 后来，编写了 {@link Solution02} 来实现解决。不过性能上，Solution02 比 Solution 差蛮多。
  */
 public class Solution {
 
@@ -19,7 +23,7 @@ public class Solution {
         // 从头节点开始，插入排序
         ListNode prev = head;
         while (prev.next != null) {
-            // 如果当前节点（prev）比下一个节点大，直接跳到下个节点。
+            // 如果当前节点（prev）比下一个节点大，直接跳到下个节点。TODO 芋艿
             if (prev.val <= prev.next.val) {
                 prev = prev.next;
                 continue;
@@ -43,22 +47,30 @@ public class Solution {
         return dummy.next;
     }
 
-// 数组的快速排序的实现
-//    public void insertionSort(int[] array) {
-//        for (int i = 1; i < array.length; i++) {
-//            int key = array[i];
-//            int j = i - 1;
-//            while (j >= 0 && array[j] > key) {
-//                array[j + 1] = array[j];
-//                j--;
+//    public static void bubbleSort(int []arr) {
+//        int[] arr = {12,23,34,56,56,56,78};
+//        for(int i =0;i<arr.length-1;i++) {
+//            for(int j=0;j<arr.length-i-1;j++) {//-1为了防止溢出
+//                if(arr[j]>arr[j+1]) {
+//                    int temp = arr[j];
+//
+//                    arr[j]=arr[j+1];
+//
+//                    arr[j+1]=temp;
+//                }
 //            }
-//            array[j + 1] = key;
 //        }
 //    }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
+        if (false) {
+            System.out.println(solution.insertionSortList(ListNode.create(5, 1, 2, 3, 4)));
+        }
         if (true) {
+            System.out.println(solution.insertionSortList(ListNode.create(5, 2, 3, 4, 1)));
+        }
+        if (false) {
             ListNode head = new ListNode(4);
             head.next = new ListNode(2);
             head.next.next = new ListNode(1);
