@@ -113,8 +113,8 @@ public class Solution {
 //        System.out.println(solution.search(new int[]{1, 1}, 0));
 //        System.out.println(solution.search(new int[]{1, 1}, 1));
 //        System.out.println(solution.search(new int[]{2, 5, 6, 0, 0, 1, 2}, 0));
-//        System.out.println(solution.search(new int[]{2, 2, 2, 0, 2, 2}, 0));
-        System.out.println(solution.search(new int[]{2, 2, 2, 2, 0, 0, 0, 2, 2}, 0));
+        System.out.println(solution.search(new int[]{2, 2, 2, 0, 2, 2}, 0));
+//        System.out.println(solution.search(new int[]{2, 2, 2, 2, 0, 0, 0, 2, 2}, 0));
     }
 
 }
