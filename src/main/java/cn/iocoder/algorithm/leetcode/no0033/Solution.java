@@ -2,6 +2,8 @@ package cn.iocoder.algorithm.leetcode.no0033;
 
 /**
  * https://leetcode-cn.com/problems/search-in-rotated-sorted-array/
+ *
+ * 本题 nums 不包括重复的
  */
 public class Solution {
 
