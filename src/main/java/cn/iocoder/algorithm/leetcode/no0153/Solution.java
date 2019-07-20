@@ -2,6 +2,8 @@ package cn.iocoder.algorithm.leetcode.no0153;
 
 /**
  * https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/
+ *
+ * 参考博客：https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/solution/xun-zhao-xuan-zhuan-pai-lie-shu-zu-zhong-de-zui-xi/
  */
 public class Solution {
 
