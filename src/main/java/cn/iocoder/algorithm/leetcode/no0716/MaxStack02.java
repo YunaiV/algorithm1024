@@ -5,33 +5,59 @@ import java.util.List;
 import java.util.TreeMap;
 
 /**
- * 双向链表 +
+ * 双向链表(LinkedList) + 平衡树(TreeMap)
  */
 public class MaxStack02 {
 
     private class LinkedList {
 
+        /**
+         * 虚拟头节点
+         */
         private Node head;
+        /**
+         * 虚拟尾节点
+         */
         private Node tail;
 
         public LinkedList() {
-
+            head = new Node(0);
+            tail = new Node(0);
+            head.next = tail;
+            tail.prev = head;
         }
 
         public void add(Node node) {
-            // TODO
+            Node prev = tail.prev;
+            // tail 的前置节点的下一个，指向 node
+            prev.next = node;
+            // tail 的前置节点，指向 node
+            tail.prev = node;
+            // node 的指向
+            node.prev = prev;
+            node.next = tail;
         }
 
         public Node pop() {
-            return null; // TODO
+            // 获得要被 pop 出来的节点
+            Node node = tail.prev;
+            // 去除 node 节点
+            tail.prev = node.prev;
+            node.prev.next = tail;
+            return node;
         }
 
         public Node top() {
-            return null; // TODO
+            return tail.prev;
         }
 
         public void remove(Node node) {
-
+            // 获得前后节点
+            Node prev = node.prev;
+            Node next = node.next;
+            // 前后互相指向
+            prev.next = next;
+            next.prev = prev;
         }
 
     }
@@ -70,6 +96,8 @@ public class MaxStack02 {
 
     /** initialize your data structure here. */
     public MaxStack02() {
+        list = new LinkedList();
+        map = new TreeMap<>();
     }
 
     public void push(int x) {
@@ -118,6 +146,19 @@ public class MaxStack02 {
         list.remove(node);
 
         return node.val;
+    }
+
+    public static void main(String[] args) {
+        MaxStack02 stack = new MaxStack02();
+        stack.push(5);
+        stack.push(1);
+        stack.push(5);
+        System.out.println(stack.top()); // -> 5
+        System.out.println(stack.popMax()); // -> 5
+        System.out.println(stack.top()); // -> 1
+        System.out.println(stack.peekMax()); // -> 5
+        System.out.println(stack.pop()); // -> 1
+        System.out.println(stack.top()); // -> 5
     }
 
 }
