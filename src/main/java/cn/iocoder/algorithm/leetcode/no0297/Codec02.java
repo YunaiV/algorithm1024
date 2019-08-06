@@ -2,12 +2,13 @@ package cn.iocoder.algorithm.leetcode.no0297;
 
 import cn.iocoder.algorithm.leetcode.common.TreeNode;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
- * https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/
- *
- * DFS 前序遍历，性能贼差
+ * 在 {@link Codec} 的基础上，将 serialize 方法的 str 参数，改成 list
  */
-public class Codec {
+public class Codec02 {
 
     private class IntObject  {
 
@@ -25,23 +26,33 @@ public class Codec {
 
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-        return this.serialize(root, "");
+        List<Integer> array = new LinkedList<>();
+        this.serialize(root, array);
+
+        StringBuilder sb = new StringBuilder();
+        Integer first = array.remove(0);
+        sb.append(first == null ? "," : first);
+        for (Integer val : array) {
+            if (val == null) {
+                sb.append(',');
+            } else {
+                sb.append(',').append(val);
+            }
+        }
+        return sb.toString();
     }
 
-    public String serialize(TreeNode root, String str) {
-        if (str.length() > 0) {
-            str += ",";
-        }
+    public void serialize(TreeNode root, List<Integer> array) {
         if (root == null) {
-            return str + "null";
+            array.add(null);
+            return;
         }
-        str += root.val;
+        array.add(root.val);
 
         // 左节点
-        str = this.serialize(root.left, str);
+        this.serialize(root.left, array);
         // 右节点
-        str = this.serialize(root.right, str);
-        return str;
+        this.serialize(root.right, array);
     }
 
     // Decodes your encoded data to tree.
@@ -64,7 +75,7 @@ public class Codec {
 
         // 节点为空，直接返回
         String data = datas[index];
-        if (data.equals("null")) {
+        if (data.length() == 0) {
             return null;
         }
 
@@ -73,6 +84,12 @@ public class Codec {
         node.left = this.deserialize(datas, intObject);
         node.right = this.deserialize(datas, intObject);
         return node;
+    }
+
+    public static void main(String[] args) {
+        Codec02 codec = new Codec02();
+        String result = codec.serialize(null);
+        System.out.println(result);
     }
 
 }
