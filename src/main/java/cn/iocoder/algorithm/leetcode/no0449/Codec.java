@@ -1,4 +1,4 @@
-package cn.iocoder.algorithm.leetcode.no0297;
+package cn.iocoder.algorithm.leetcode.no0449;
 
 import cn.iocoder.algorithm.leetcode.common.TreeNode;
 
@@ -6,9 +6,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 在 {@link Codec} 的基础上，将 serialize 方法的 str 参数，改成 list
+ * https://leetcode-cn.com/problems/serialize-and-deserialize-bst/
+ *
+ * 直接使用 {@link cn.iocoder.algorithm.leetcode.no0297.Codec02} 的解，未使用二叉搜索树的特性。
  */
-public class Codec02 {
+public class Codec {
 
     private class IntObject  {
 
@@ -91,12 +93,6 @@ public class Codec02 {
         node.left = this.deserialize(data, intObject);
         node.right = this.deserialize(data, intObject);
         return node;
-    }
-
-    public static void main(String[] args) {
-        Codec02 codec = new Codec02();
-        String result = codec.serialize(null);
-        System.out.println(result);
     }
 
 }
