@@ -35,68 +35,45 @@ public class Solution {
         }
 
         // 计算情况
-        List<Integer> results = new ArrayList<>();
-        this.calc(results, ops, numbers);
-        return results;
+        return this.partition(ops, numbers, 0, numbers.size() - 1);
     }
 
-    private void calc(List<Integer> results, List<Character> ops, List<Integer> numbers) {
-        if (numbers.size() == 1) {
-            results.add(numbers.get(0));
-            return;
+    private List<Integer> partition(List<Character> ops, List<Integer> numbers, int start, int end) {
+        List<Integer> results = new ArrayList<>();
+        if (start == end) {
+            results.add(numbers.get(start));
+            return results;
         }
 
         // 顺序选择一个位置操作
-        for (int i = 0; i < ops.size(); i++) {
-            // 计算
-            char ch = ops.get(i);
-            int sum = this.sum(ch, numbers, i);
-            // 继续计算
-            this.calc(results,
-                    this.removeOps(ops, i),
-                    this.removeNumbers(numbers, i, sum));
+        for (int i = start; i < end; i++) { // 操作符的遍历
+            // 左半区间的组合
+            for (Integer left : this.partition(ops, numbers, start, i)) {
+                // 右半组件的组合
+                for (Integer right : this.partition(ops, numbers, i + 1, end)) {
+                    // 组合结果
+                    results.add(this.calc(ops.get(i), left, right));
+                }
+            }
         }
+        return results;
     }
 
     private boolean isNumber(char ch) {
         return ch >= '0' && ch <= '9';
     }
 
-    private int sum(char ch, List<Integer> numbers, int index) {
+    private int calc(char ch, Integer left, Integer right) {
         if (ch == '+') {
-            return numbers.get(index) + numbers.get(index + 1);
+            return left + right;
         }
         if (ch == '-') {
-            return numbers.get(index) - numbers.get(index + 1);
+            return left - right;
         }
         if (ch == '*') {
-            return numbers.get(index) * numbers.get(index + 1);
+            return left * right;
         }
         throw new IllegalStateException("未知字符串" + ch);
-    }
-
-    private List<Character> removeOps(List<Character> ops, int index) {
-        List<Character> newOps = new ArrayList<>();
-        for (int i = 0; i < ops.size(); i++) {
-            if (i == index) {
-                continue;
-            }
-            newOps.add(ops.get(i));
-        }
-        return newOps;
-    }
-
-    private List<Integer> removeNumbers(List<Integer> numbers, int index, int result) {
-        List<Integer> newNumbers = new ArrayList<>();
-        for (int i = 0; i < numbers.size(); i++) {
-            if (i == index) {
-                newNumbers.add(result);
-            } else if (i == index + 1) {
-            } else {
-                newNumbers.add(numbers.get(i));
-            }
-        }
-        return newNumbers;
     }
 
     public static void main(String[] args) {
