@@ -4,6 +4,8 @@ package cn.iocoder.algorithm.leetcode.no0200;
  * https://leetcode-cn.com/problems/number-of-islands/
  *
  * DFS
+ *
+ * 当然，也可以 BFS 。在
  */
 public class Solution {
 
