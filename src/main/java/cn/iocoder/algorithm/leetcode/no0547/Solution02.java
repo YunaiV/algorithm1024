@@ -30,7 +30,7 @@ public class Solution02 {
             array[pRoot] = qRoot;
         }
 
-        public int findRoot(int i) {
+        private int findRoot(int i) {
             // 寻找 root
             int root = i;
             while (array[root] != root) {
