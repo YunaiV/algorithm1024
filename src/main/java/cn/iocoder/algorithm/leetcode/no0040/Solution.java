@@ -7,6 +7,8 @@ import java.util.List;
 
 /**
  * https://leetcode-cn.com/problems/combination-sum-ii/
+ *
+ * 回溯算法
  */
 public class Solution {
 
