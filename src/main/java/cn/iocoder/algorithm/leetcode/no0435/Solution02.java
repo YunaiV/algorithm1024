@@ -4,13 +4,13 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * https://leetcode-cn.com/problems/non-overlapping-intervals/
- *
  * 贪心算法
  *
- * 按照【起始值】升序，然后优先使用【结束值】更小的板
+ * 按照【结束值】升序，然后优先使用【结束值】最小的板
+ *
+ * 相比 {@link Solution} 来说，代码更加简洁
  */
-public class Solution {
+public class Solution02 {
 
     public int eraseOverlapIntervals(int[][] intervals) {
         // 数组为 0 ，不用排除
@@ -21,7 +21,7 @@ public class Solution {
         Arrays.sort(intervals, new Comparator<int[]>() { // 不适用 lambada 表达式，避免性能损耗
             @Override
             public int compare(int[] o1, int[] o2) {
-                return o1[0] - o2[0];
+                return o1[1] - o2[1];
             }
         });
 
@@ -30,10 +30,7 @@ public class Solution {
         int deleteCount = 0;
         for (int i = 1; i < intervals.length; i++) {
             int[] current = intervals[i];
-            if (last[1] > current[0]) { // 重叠，所以删除
-                if (last[1] > current[1]) { // 使用尾巴更短的，这样和后面的板子，冲突更小。
-                    last = current;
-                }
+            if (last[1] > current[0]) {
                 deleteCount++;
                 continue;
             }
@@ -43,7 +40,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        Solution02 solution = new Solution02();
 //        int[][] intervals = new int[][]{{1, 2}, {2, 3}, {3, 4}, {1, 3}};
 //        int[][] intervals = new int[][]{{1, 2}, {1, 2}, {1, 2}};
 //        int[][] intervals = new int[][]{{1, 2}, {2, 3}};
