@@ -20,6 +20,8 @@ import java.util.Arrays;
  * * height[j] = 0
  *
  * 每一层，都计算 Math.max(max, height[j] * (right[j] - left[j]))
+ *
+ * 参考 https://leetcode-cn.com/problems/maximal-rectangle/solution/zui-da-ju-xing-by-leetcode/ 方法四。
  */
 public class Solution02 {
 
